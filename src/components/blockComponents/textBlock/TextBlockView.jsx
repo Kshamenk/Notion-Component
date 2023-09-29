@@ -19,7 +19,7 @@ import TextBlock from './TextBlock'
         })
     }
    function handleOnKeyDown(item,e){
-    if (e.key = 'Enter') {
+    if (e.key === 'Enter') {
         onCreate()
     }
    }
