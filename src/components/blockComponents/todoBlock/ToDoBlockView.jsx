@@ -7,9 +7,25 @@ import React,{ forwardRef, useEffect } from 'react';
         }
     },[focusId])
 
-function handleOnChange(item,e){}
+function handleOnChange(item,e){
+    switch (e.target.name) {
+        case "checkbox":
+            onChange({ type:"todo", id: item.id, completed: e.target.checked})
+            break;
+        case "text":
+            onChange({ type:"todo", id: item.id, text: e.target.value})
+             break;    
+    
+        default:
+            
+    }
+}
 
-function handleOnKeyDown(item, e){}
+function handleOnKeyDown(item, e){
+    if (e.key === "Enter") {
+        onCreate()
+    }
+}
 
 
 return data.map((item)=>(
