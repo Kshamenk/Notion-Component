@@ -8,7 +8,7 @@ import TextBlock from './TextBlock'
             ref.current.focus()
         }
 
-    },[focusId])
+    },[focusId,ref])
 
     function handleOnChange(item,e){
         onChange({

@@ -2,10 +2,10 @@ import ToDoBlock from "./ToDoBlock";
 import React,{ forwardRef, useEffect } from 'react';
  function ToDoBlockView({data, onChange, onCreate,focusId}, ref) {
     useEffect(()=>{
-        if(focusId){
+        if(focusId && ref.current){
             ref.current.focus()
         }
-    },[focusId])
+    },[focusId,ref])
 
 function handleOnChange(item,e){
     switch (e.target.name) {
