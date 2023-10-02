@@ -15,6 +15,7 @@ function handleOnKeyDown(e){
 
     return (
     <Input
+    border
     ref={focus? ref : null}
      value={item.text}  
      onKeyDown={handleOnKeyDown}
