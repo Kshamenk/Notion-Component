@@ -1,11 +1,10 @@
-
-import './App.css';
-import BlockView from './components/blockView/BlockView';
-
+import "./App.css";
+import BlockView from "./components/blockView/BlockView";
+import "./components/blockView/BlockView.css";
 function App() {
   return (
-    <div className="App">
-      <BlockView/>
+    <div className="mainContainer">
+      <BlockView />
     </div>
   );
 }

@@ -1,7 +1,8 @@
 import { forwardRef } from "react"
 import Headers from "./Headers"
 import Cell from "./Cell.jsx"
-function TableBlock({columns ,data ,onChange },ref) {
+import './Table.css'
+function TableBlock({columns ,data ,onChange, },ref) {
 
 
     return ( <table>
@@ -16,6 +17,7 @@ function TableBlock({columns ,data ,onChange },ref) {
                         key={crypto.randomUUID()} 
                         text={row[cell].toString() ?? ""}
                         onChange={(value)=> onChange(rowIndex,cell,value)}
+                        canBeEdited={columns[cellIndex] !== 'id'}
                         />
                     ))}
                 </tr>

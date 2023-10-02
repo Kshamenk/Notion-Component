@@ -3,13 +3,15 @@ import TextBlockView from "../blockComponents/textBlock/TextBlockView";
 import Button from "../button";
 import ToDoBlockView from "../blockComponents/todoBlock/ToDoBlockView";
 import TableBlockView from "../blockComponents/tableBlock/TableBlockView";
+
+import "./BlockView.css";
 export default function BlockView() {
   const ref = useRef(null);
 
   const [currentItem, setCurrentItem] = useState(null);
-  const [type, setType] = useState("text"); //table, todo
+  const [type, setType] = useState("text");
   const [properties, setProperties] = useState(["id", "text", "completed"]);
-
+  const [visible, setVisible] = useState(false);
   const [data, setData] = useState([
     {
       id: crypto.randomUUID(),
@@ -41,14 +43,14 @@ export default function BlockView() {
     }
 
     if (type === "table") {
-        const temp = [...data];
-        const editItem = temp.find((i) => i.id === id);
-        if (editItem) {
-          editItem = item.updatedItem
-          setData(temp);
-        }
+      const temp = [...data];
+      let editItem = temp.find((i) => i.id === id);
+      if (editItem) {
+        editItem = item.updatedItem;
+        setData(temp);
       }
-  }
+    }
+  }   //protocolo
 
   function handleOnCreate() {
     const newItem = {
@@ -93,12 +95,27 @@ export default function BlockView() {
 
   function TypesSelector() {
     return (
-      <div>
-        <button>...</button>
-        <div>
-          <button onClick={() => setType("text")}>Text</button>
-          <button onClick={() => setType("todo")}>ToDo</button>
-          <button onClick={() => setType("table")}>Table</button>
+      <div style={{ position: "relative", marginTop: "20px" }}>
+        <Button
+          inverted="true"
+          menu="true"
+          onClick={() => setVisible(!visible)}
+        >
+          ...
+        </Button>
+        <div
+          className="typesSelectorButtons"
+          style={{ display: visible ? "flex" : "none" }}
+        >
+          <button className="blockViewButton" onClick={() => setType("text")}>
+            Text
+          </button>
+          <button className="blockViewButton" onClick={() => setType("todo")}>
+            ToDo
+          </button>
+          <button className="blockViewButton" onClick={() => setType("table")}>
+            Table
+          </button>
         </div>
       </div>
     );
@@ -106,7 +123,7 @@ export default function BlockView() {
 
   if (type === "todo") {
     return (
-      <div>
+      <div className="blockViewContainer">
         <TypesSelector />
         <ToDoBlockView
           ref={ref}
@@ -121,7 +138,7 @@ export default function BlockView() {
 
   if (type === "table") {
     return (
-      <div>
+      <div className="blockViewContainer">
         <TypesSelector />
         <TableBlockView
           ref={ref}
@@ -138,7 +155,7 @@ export default function BlockView() {
 
   //componente de texto por defecto
   return (
-    <div>
+    <div className="blockViewContainer">
       <TypesSelector />
       <TextBlockView
         ref={ref}
