@@ -26,7 +26,7 @@ export default function BlockView() {
     if (type === "text") {
       const temp = [...data];
       const editItem = temp.find((i) => i.id === id);
-      if (editItem) {
+      if (editItem) {  
         editItem.text = text;
         setData(temp);
       }
